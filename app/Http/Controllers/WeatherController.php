@@ -8,11 +8,10 @@ use Symfony\Component\Mailer\Messenger\SendEmailMessage;
 class WeatherController extends Controller
 {
     public function get_weather() {
-        $apiKey = "7f08990d84f37b13f9a27ec946264399";
+        $apiKey = "ae9474847b0f3012c126f08f58722c2f";
         $cityName = "Ho Chi Minh City";
         $cityName = urlencode($cityName);
-        $apiUrlWeather = "https://api.openweathermap.org/data/2.5/weather?zip=71400&q={$cityName}&appid={$apiKey}&lang=vi";
-        
+        $apiUrlWeather = "https://api.openweathermap.org/data/2.5/weather?&q={$cityName}&appid={$apiKey}&lang=vi";
         // Khởi tạo cURL
         $ch = curl_init();
 
@@ -51,5 +50,6 @@ class WeatherController extends Controller
         } else {
             echo "City not found.";
         }
+
     }
 }

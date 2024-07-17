@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 class SendMessageController extends Controller
 {
     public static function send($method, $data) {
-        $method = "getUpdates";
         $api_bot = "7432635283:AAFNt6p1dD-bqH4n8gNVZIfKzE6T42CM_-8";
         $url_socialNetWorld = "https://api.telegram.org/bot{$api_bot}/{$method}";
         $id = 5572600385;
         $text = "";
+        
 
         foreach ($data as $value) {
             $text .= $value ."\n";
@@ -72,4 +72,6 @@ class SendMessageController extends Controller
         
         curl_close($ch);
     }
+
+    
 }
