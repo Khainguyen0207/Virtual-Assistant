@@ -7,7 +7,7 @@ use Symfony\Component\Mailer\Messenger\SendEmailMessage;
 
 class WeatherController extends Controller
 {
-    public function get_weather() {
+    public static function get_weather() {
         $apiKey = "ae9474847b0f3012c126f08f58722c2f";
         $cityName = "Ho Chi Minh City";
         $cityName = urlencode($cityName);
@@ -46,9 +46,10 @@ class WeatherController extends Controller
                 "Chúc bạn 1 ngày tốt lành!", 
                 "$Data"
             ];
-            SendMessageController::send('getUpdates', $info);
+            return $info;
+            // SendMessageController::send('sendMessage', $info);
         } else {
-            echo "City not found.";
+            return "Thời tiết không được cập nhật!";
         }
 
     }
