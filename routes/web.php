@@ -10,8 +10,18 @@ Route::get('/', function(){
 
 Route::get('/set-webhook', function () {
     $telegram = new Api(config('services.telegram.bot_token'));
-    $url = 'https://395e-2405-4802-813b-84b0-3969-ab8e-ec4c-a3b4.ngrok-free.app/VirtualAssistant/public/telegram/webhook';
+    $url = 'https://b927-14-161-13-253.ngrok-free.app/VirtualAssistant/public/telegram/webhook';
     try {
+        $telegram = new Api(config('services.telegram.bot_token'));
+        $time = getdate(time());
+
+        if ($time['minutes'] == 13) {
+            $telegram->sendMessage([
+                'chat_id' => 5572600385,
+                'text' => "Hello ",
+            ]);
+        }
+        
         $response = $telegram->setWebhook(['url' => $url]);
         return 'Webhook set successfully: ' . $response;
     } catch (\Exception $e) {

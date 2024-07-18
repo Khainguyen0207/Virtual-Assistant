@@ -12,14 +12,13 @@ class MessageController extends Controller
     public function handleWebhook(Request $request)
     {
         $telegram = new Api(config('services.telegram.bot_token'));
-        
+        $time = getdate(time());
         //Xử lý tin nhắn và trả lời lại nếu cần
         $update = $telegram->getWebhookUpdates();
         $message = $update->getMessage();
         $chatId = $message->getChat()->getId();
         $text = $message->getText();
-        $ngay = new DateTime();
-        
+        $date = $time['hours'] .":" .$time['minutes'] .":" .$time['seconds'] ."     " .$time['mday'] ."/" .$time['mon'] ."/" .$time['year'];
         // Xử lý tin nhắn và trả lời lại nếu cần
         if ($text == '/weather') {
             $weather = WeatherController::get_weather();
@@ -27,7 +26,8 @@ class MessageController extends Controller
             foreach ($weather as $value) {
                 $message_send .= $value ."\n";
             }
-
+            $message_send .= $date;
+            
             $telegram->sendMessage([
                 'chat_id' => $chatId,
                 'text' => $message_send,
