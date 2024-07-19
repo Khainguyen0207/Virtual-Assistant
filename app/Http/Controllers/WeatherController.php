@@ -38,12 +38,17 @@ class WeatherController extends Controller
             $weatherDescription = $data['weather'][0]['description'];
             $weather = $data['weather'][0]['main'];
             $Data = "";
+
             if ($weather == "Rain") {
+                $weather .= "🌧️⛈️";
                 $Data = "Nhớ hãy đem áo mưa nhé!";
+            } else {
+                $weather .= "☁️";
             }
+
             $info = [
                 "Thời tiết hôm nay: $weather: $weatherDescription", 
-                "Chúc bạn 1 ngày tốt lành!", 
+                "Chúc bạn 1 ngày tốt lành!👍", 
                 "$Data"
             ];
             return $info;
