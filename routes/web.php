@@ -4,10 +4,6 @@ use Telegram\Bot\Api;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessageController;
 
-Route::get('/', function(){
-    return view('welcome');
-});
-
 Route::get('/set-webhook', function () {
     $url = env('DOMAIN_SETWEBHOOK');
     try {

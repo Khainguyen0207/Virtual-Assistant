@@ -37,22 +37,31 @@ class WeatherController extends Controller
         if ($data['cod'] == 200) {
             $weatherDescription = $data['weather'][0]['description'];
             $weather = $data['weather'][0]['main'];
-            $Data = "";
+            $advice = null;
 
             if ($weather == "Rain") {
                 $weather .= "🌧️⛈️";
-                $Data = "Nhớ hãy đem áo mưa nhé!";
-            } else {
+                $advice = "Nhớ hãy đem áo mưa nhé!";
+            } else if ($weather == "Clouds") {
+                $advice = "Dấu hiệu trời khá âm u!";
                 $weather .= "☁️";
             }
 
             $info = [
                 "Thời tiết hôm nay: $weather: $weatherDescription", 
-                "Chúc bạn 1 ngày tốt lành!👍", 
-                "$Data"
+                "Chúc bạn 1 ngày tốt lành!👍",
             ];
-            return $info;
-            // SendMessageController::send('sendMessage', $info);
+
+            $message = "";
+
+            foreach ($info as $value) {
+                $message .= $value ."\n";
+            }
+
+            if(isset($advice)) {
+                $message .= $advice ."\n";
+            }
+            return $message;
         } else {
             return "Thời tiết không được cập nhật!";
         }

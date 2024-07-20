@@ -32,11 +32,11 @@ class SetupWebhook extends Command
         $url = env('DOMAIN_SETWEBHOOK');
         
         try {
-            $telegram->setWebhook(['url' => env('DOMAIN_SETWEBHOOK')]);
+            $telegram->setWebhook(['url' => $url]);
+            $this->info("DOMAIN_SETWEBHOOK success $url");
         } catch (\Throwable $th) {
-            $this->info("DOMAIN_SETWEBHOOK fail $url");
+            $this->info("Vui lòng setup domain bên file .env\nTips: Nhấn giữ ctrl + click để đến file .env và gắn domain tại DOMAIN_SETWEBHOOK");
         }
 
-        $this->info("DOMAIN_SETWEBHOOK success");
     }
 }

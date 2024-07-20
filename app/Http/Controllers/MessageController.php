@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DateTime;
 use Telegram\Bot\Api;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ChatDataController;
 
 class MessageController extends Controller
 {
@@ -25,22 +26,12 @@ class MessageController extends Controller
         $time = getdate(time());
         $date = $time['hours'] .":" .$time['minutes'] .":" .$time['seconds'] ."     " .$time['mday'] ."/" .$time['mon'] ."/" .$time['year'];
         // Xử lý tin nhắn và trả lời lại nếu cần
-        $message_send = null;
-        if ($text == '/weather') {
-            $weather = WeatherController::get_weather();
-            foreach ($weather as $value) {
-                $message_send .= $value ."\n";
-            }
-            $message_send .= $date;
-        }
-        $this->SendMessage($chatId, $message_send, $message['message_id']);
+        $this->SendMessage($chatId, $message['message_id'], $text, $date);
     }
 
-    public function SendMessage($chatId, $message_send, $message_id_reply) {
-        if (empty($message_send)) {
-            $message_send = "Chào bạn nhó! Tớ hơi yếu nên là chưa hiểu bạn nói gì!😓🤖";
-        }
-
+    public function SendMessage($chatId, $message_id_reply, $text, $date) {
+        $message = new ChatDataController;
+        $message_send = $message->ChatDataController($text) .$date;
         $this->telegram->sendMessage([
             'chat_id' => $chatId,
             'text' => $message_send,
