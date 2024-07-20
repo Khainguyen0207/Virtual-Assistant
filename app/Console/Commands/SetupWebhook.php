@@ -29,13 +29,12 @@ class SetupWebhook extends Command
     public function handle()
     {
         $telegram = new Api(config('services.telegram.bot_token'));
-        $url = env('DOMAIN_SETWEBHOOK');
-        
+        $url_file = trim(fread(fopen("ngrok/setout.txt", "r"), filesize("ngrok/setout.txt"))) ."/VirtualAssistant/public/telegram/webhook";
         try {
-            $telegram->setWebhook(['url' => $url]);
-            $this->info("DOMAIN_SETWEBHOOK success $url");
+            $telegram->setWebhook(['url' => $url_file]);
+            $this->info("DOMAIN SETUP SUCCESS");
         } catch (\Throwable $th) {
-            $this->info("Vui lòng setup domain bên file .env\nTips: Nhấn giữ ctrl + click để đến file .env và gắn domain tại DOMAIN_SETWEBHOOK");
+            $this->info("Hãy chạy lại lệnh php artisan app:setup-webhook");
         }
 
     }

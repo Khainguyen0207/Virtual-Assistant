@@ -65,6 +65,5 @@ class WeatherController extends Controller
         } else {
             return "Thời tiết không được cập nhật!";
         }
-
     }
 }
