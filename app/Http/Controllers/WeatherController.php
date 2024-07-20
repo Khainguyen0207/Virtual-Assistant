@@ -37,13 +37,13 @@ class WeatherController extends Controller
         if ($data['cod'] == 200) {
             $weatherDescription = $data['weather'][0]['description'];
             $weather = $data['weather'][0]['main'];
-            $advice = null;
+            $advice = "Lời nhắc: ";
 
             if ($weather == "Rain") {
                 $weather .= "🌧️⛈️";
-                $advice = "Nhớ hãy đem áo mưa nhé!";
+                $advice .= "Nhớ hãy đem áo mưa nhé!";
             } else if ($weather == "Clouds") {
-                $advice = "Dấu hiệu trời khá âm u!";
+                $advice .= "Dấu hiệu trời khá âm u!";
                 $weather .= "☁️";
             }
 

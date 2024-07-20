@@ -16,5 +16,5 @@ class ChatDataController extends Controller
             default: fwrite(fopen('Message_Data.txt', 'a'), "\n$text" ); return "Chào bạn nhó!\nTớ hơi yếu nên là chưa hiểu bạn nói gì!😓🤖\n";
         
         }
-    }
+    } 
 }
