@@ -13,8 +13,9 @@ class ChatDataController extends Controller
 
             case '/weather': return WeatherController::get_weather();     
 
-            default: fwrite(fopen('Message_Data.txt', 'a'), "\n$text" ); return "Chào bạn nhó!\nTớ hơi yếu nên là chưa hiểu bạn nói gì!😓🤖\n";
-        
+            case '/morning': return "Chào buổi sáng!\n";     
+
+            default: fwrite(fopen('Message_Data.txt', 'a'), "\n$text" ); return "Chào bạn nhó!\nXin lỗi vì mình chưa hiểu bạn nói gì!😓🤖\nChức năng đang được update...\n";
         }
     } 
 }

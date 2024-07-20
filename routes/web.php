@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auto\EveryDay;
 use Telegram\Bot\Api;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessageController;

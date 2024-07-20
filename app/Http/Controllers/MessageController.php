@@ -32,6 +32,7 @@ class MessageController extends Controller
     public function SendMessage($chatId, $message_id_reply, $text, $date) {
         $message = new ChatDataController;
         $message_send = $message->ChatDataController($text) .$date;
+        
         $this->telegram->sendMessage([
             'chat_id' => $chatId,
             'text' => $message_send,
