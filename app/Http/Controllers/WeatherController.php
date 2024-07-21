@@ -8,7 +8,7 @@ use Symfony\Component\Mailer\Messenger\SendEmailMessage;
 class WeatherController extends Controller
 {
     public static function get_weather() {
-        $apiKey = "ae9474847b0f3012c126f08f58722c2f";
+        $apiKey="";
         $cityName = "Ho Chi Minh City";
         $cityName = urlencode($cityName);
         $apiUrlWeather = "https://api.openweathermap.org/data/2.5/weather?&q={$cityName}&appid={$apiKey}&lang=vi";
