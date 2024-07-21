@@ -19,6 +19,7 @@ class MessageController extends Controller
     {
         //Xử lý tin nhắn và trả lời lại nếu cần
         $update = $this->telegram->getWebhookUpdates();
+        fwrite(fopen('open.txt', 'a'),  $update ."\n");
         $message = $update->getMessage();
         $chatId = $message->getChat()->getId();
         $text = $message->getText();
